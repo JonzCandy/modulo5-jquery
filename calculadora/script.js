@@ -1,32 +1,22 @@
-//Buttons
-function adicionar(num) {
-    var numero = document.getElementById('resultado').innerHTML;
-    document.getElementById('resultado').innerHTML = numero + num;
-}
+$(document).ready(function(){
+  for (let i = 1; i < 16; i++) {
+    $("#b"+i).click(function(){
+      var lazy = $("#b"+i).text();
+      $("#resultado").append(lazy);
+    });
+  }
 
-function limpar() {
-    document.getElementById('resultado').innerHTML = "";
-}
+  $("#limpar").click(function(){
+    $("#resultado").empty();
+  })
 
-function apagar() {
-    var retorne = document.getElementById('resultado').innerHTML;
-    document.getElementById('resultado').innerHTML = retorne.substring(0, retorne.length -1);
-}
-
-function calculo() {
-    var calcular = document.getElementById('resultado').innerHTML;
-    if(calcular != ""){
-        document.getElementById('resultado').innerHTML = eval(calcular);
+  $("#calculo").click(function(){
+    if(($("#resultado").text()) != ""){
+      var result = eval($("#resultado").text());
+      $("#resultado").empty();
+      $("#resultado").append(result);
+    } else {
+      $("#resultado").append("Insira Valores") 
     }
-    else {
-        document.getElementById('resultado').innerHTML = "Insira Valores";
-    }
-}
-
-//Footer
-const fillFooter = document.getElementById("fim-pagina");
-
-function fillFooterContent() {
-    fillFooter.innerHTML = "<h3>Pagina feita por:</h3><p>Jonz_Candy @2021</p>";
-}
-fillFooterContent()
+  })
+});
